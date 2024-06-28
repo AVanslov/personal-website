@@ -3,15 +3,11 @@
   <head>
     <meta charset="UTF-8">
     {% load static %}
-    <link href="{% static 'bootstrap/main.css' %}" rel="stylesheet">
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <link href='https://fonts.googleapis.com/css?family=Fredoka One' rel='stylesheet'>
-    <link href="https://fonts.cdnfonts.com/css/robert-sans" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
-  
+    <link href="{% static 'bootstrap/main.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap/badges/badges.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap/assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="{% static 'bootstrap/assets/js/color-modes.js' %}"></script>
   </head>
   <body>
     {% include "includes/header.html" %}
