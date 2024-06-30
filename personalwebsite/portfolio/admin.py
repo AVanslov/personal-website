@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Technologies, Project
+
+admin.site.register(Technologies)
+
+admin.site.register(Project) 
