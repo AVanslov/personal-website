@@ -4,4 +4,4 @@ from .models import Technologies, Project
 
 admin.site.register(Technologies)
 
-admin.site.register(Project) 
+admin.site.register(Project)

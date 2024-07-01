@@ -8,7 +8,7 @@ NUMBER_OF_VISIBLE_CHATACTERS = 15
 class TitleModel(models.Model):
     """Модель абстрактного класса Заголовок."""
 
-    title = models.CharField('Заголовок', max_length=MAXIMUM_STRING_LENGTH,)
+    name = models.CharField('Заголовок', max_length=MAXIMUM_STRING_LENGTH,)
 
     class Meta:
         abstract = True
@@ -49,7 +49,7 @@ class Post(TitleModel):
         on_delete=models.SET_NULL,
         null=True,
     )
-    image = models.ImageField(
+    main_foto = models.ImageField(
         'Фото',
         upload_to='post_images',
         blank=True,
