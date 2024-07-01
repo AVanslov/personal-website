@@ -56,7 +56,10 @@
       {% endif %}
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4 mb-lg-3 pt-5">
-      <button type="button" class="btn btn-outline-secondary btn-lg px-4">See more projects</button>
+      <a href="{% url 'portfolio:all_projects' %}" class="nav-link px-2">
+
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">See more projects</button>
+      </a>
     </div>
 
     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">

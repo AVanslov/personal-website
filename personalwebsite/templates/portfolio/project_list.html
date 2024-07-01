@@ -5,19 +5,10 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-  <!-- <h1 class="text-center">Portfolio</h1> -->
-  <div class="row row-cols-3 row-cols-lg-6 align-items-stretch g-4 py-3">
-    {% if page_obj.all_technologies %}
-      {% for tag in page_obj.all_technologies %}
-        {% include "includes/tag.html" %}
-      {% endfor %}
-    {% else %}
-      <p>There are no technologies yet</p>
-    {% endif %}
-  </div>
+  <h1 class="text-center">Portfolio</h1>
   <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-1">
-    {% if page_obj.all_projects %}
-      {% for post in page_obj.all_projects %}
+    {% if page_obj %}
+      {% for post in page_obj %}
         {% include "includes/post_card.html" %}
       {% endfor %}
     {% else %}

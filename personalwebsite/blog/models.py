@@ -29,7 +29,7 @@ class Category(TitleModel):
     )
 
     def __str__(self):
-        return self.title[:NUMBER_OF_VISIBLE_CHATACTERS]
+        return self.name[:NUMBER_OF_VISIBLE_CHATACTERS]
 
 
 class Post(TitleModel):
@@ -62,4 +62,4 @@ class Post(TitleModel):
         ordering = ('-pub_date',)
 
     def __str__(self):
-        return self.title[:NUMBER_OF_VISIBLE_CHATACTERS]
+        return self.name[:NUMBER_OF_VISIBLE_CHATACTERS]
