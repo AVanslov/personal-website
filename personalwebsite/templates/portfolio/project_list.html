@@ -5,7 +5,43 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-  <h1 class="text-center">Portfolio</h1>
+  <div class="container my-5">
+    <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+      <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+        <h1 class="display-4 fw-bold lh-1 text-body-emphasis">Portfolio</h1>
+        <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Primary</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+        </div>
+      </div>
+      <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+          <img class="rounded-lg-3 rounded-top-3" src="{% static 'img/unsplash-photo-2.jpg' %}" alt="" style="object-fit: contain;" height="620" width="auto">
+      </div>
+    </div>
+  </div>
+
+  <form action="" method="get">
+    <div class="row align-items-stretch pb-5 py-1">
+      <div class="col-11">
+        <div class="row">
+          {% for i in filterset.form %}
+            {% for i in i %}
+              <div class="col form-check form-check-inline">
+                <span class="badge d-flex align-items-center p-2 pe-2 text-info-emphasis bg-info-subtle border border-info-subtle rounded-3">
+                  {{ i }}
+                </span>
+              </div>
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-1">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>  
+    </div>
+  </form>
+
   <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-1">
     {% if page_obj %}
       {% for post in page_obj %}
@@ -16,4 +52,4 @@
     {% endif %}
     </div>
   </div>
-  {% endblock %}
+{% endblock %}

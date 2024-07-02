@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'portfolio.apps.PortfolioConfig',
     'mainpage.apps.MainpageConfig',
+
+    'django_filters',
 ]
 
 MIDDLEWARE = [
