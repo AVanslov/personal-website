@@ -1,24 +1,44 @@
 from typing import Any
-from django.views.generic import ListView
+from django.shortcuts import get_object_or_404
+from django.views.generic import ListView, DetailView
 
-from .filters import ProjectsFilter
-
-from .models import Project, Technologies
+from .models import Project, Technology
 
 
 class PortfolioListView(ListView):
     model = Project
     ordering = '-pub_date'
     template_name = 'portfolio/project_list.html'
-    paginate_by = 12
-    filterset_class = ProjectsFilter
+    context_object_name = 'page_obj'
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        self.filterset = self.filterset_class(self.request.GET, queryset=queryset)
-        return self.filterset.qs.distinct()
+        queryset = {'projects': Project.objects.all(),
+                    'technologies': Technology.objects.all()}
+        return queryset
+
+
+class PortfolioDetailView(DetailView):
+    model = Project
+    template_name = 'portfolio/project_detail.html'
+
+
+class CategoryProjectListView(ListView):
+    model = Project
+    template_name = 'portfolio/project_list.html'
+    context_object_name = 'page_obj'
+
+    def get_technology(self):
+        return get_object_or_404(
+            Technology,
+            slug=self.kwargs['category_slug']
+        )
+
+    def get_queryset(self):
+        queryset = {'projects': self.get_technology().projects.all(),
+                    'technologies': Technology.objects.all()}
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['filterset'] = self.filterset
+        context['technology'] = self.get_technology()
         return context

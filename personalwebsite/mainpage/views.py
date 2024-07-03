@@ -1,13 +1,13 @@
 from django.shortcuts import render
 
 from blog.models import Post
-from portfolio.models import Project, Technologies
+from portfolio.models import Project, Technology
 
 
 def main(request):
     projects = Project.objects.all().order_by('-pub_date')[0:5]
     posts = Post.objects.all().order_by('-pub_date')[0:5]
-    technologies = Technologies.objects.all()
+    technologies = Technology.objects.all()
 
     context = {
         'projects': projects,

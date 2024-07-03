@@ -6,12 +6,24 @@ DESCRIPTION_LENGTH = 500
 BODY_MAX_LENGTH = 10000
 
 
-class Technologies(models.Model):
-    name = models.CharField(max_length=NAME_LENGTH)
+class Technology(models.Model):
+    name = models.CharField(
+        max_length=NAME_LENGTH,
+    )
     badge = models.ImageField(
         'Badge',
         upload_to='badges',
         default='badges/icons8-python-48.png',
+    )
+    slug = models.SlugField(
+        'Slug',
+        unique=True,
+        max_length=64,
+        help_text=(
+            'Идентификатор страницы для URL; разрешены символы латиницы, '
+            'цифры, дефис и подчёркивание.'
+        ),
+        default=None
     )
 
     def __str__(self):
@@ -33,7 +45,10 @@ class Project(models.Model):
     code_url = models.URLField()
     production_url = models.URLField()
     pub_date = models.DateField(auto_now=False, auto_now_add=False)
-    technologies_id = models.ManyToManyField(Technologies, related_name='tags')
+    technologies_id = models.ManyToManyField(
+        Technology,
+        related_name='projects'
+    )
 
     def __str__(self):
         return self.name

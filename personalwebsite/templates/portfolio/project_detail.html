@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  {{ post.name }}
+{% endblock %}
+{% block content %}
+  {% include "includes/toggle-theme.html" %}
+  <div class="container">
+    
+    <div class="container my-5">
+      <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+          <div class="pb-5">
+            <em>{{ project.pub_date }}</em>
+          </div>
+          <h1 class="display-4 fw-bold lh-1 text-body-emphasis">{{ project.name }}</h1>
+          <p class="lead">{{ project.short_description }}</p>
+          <div class="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-1">
+            {% if project %}
+            {% for tag in project.technologies_id.all %}
+            {% include "includes/tag.html" %}
+            {% endfor %}
+            {% else %}
+            <p>There are no technologies yet</p>
+            {% endif %}
+          </div>
+          <div class="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-4">
+            <a href="{{ project.code_url }}">
+              <button type="button" class="btn btn-primary">
+                GitHub
+              </button>
+            </a>
+            {% if project.production_url %}
+            <a href="{{ project.production_url }}">
+              <button type="button" class="btn btn-outline-primary">
+                View service
+              </button>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+            <img class="rounded-lg-3 rounded-top-3" src="{{ project.main_foto.url }}" alt="" style="object-fit: contain;" height="auto" width="500">
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="row p-4 pb-0 pe-lg-0 align-items-center rounded-3 border shadow-lg">
+      <div class="col-lg-12 p-3 p-lg-5 pt-lg-3">
+        <h2 class="display-4 fw-bold lh-1 text-body-emphasis">More about project</h2>
+        <p>{{ project.body_text }}</p>
+      </div>
+    </div> -->
+  </div>
+{% endblock %}

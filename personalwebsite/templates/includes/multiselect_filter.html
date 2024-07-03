@@ -1,0 +1,21 @@
+<form action="" method="get">
+  <div class="row align-items-center pb-5 py-1">
+    <div class="col-11">
+      <div class="row">
+        {% for i in filterset.form %}
+          {% for i in i %}
+            <div class="col form-check form-check-inline">
+              <!-- <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> -->
+              <span class="badge d-flex align-items-center p-2 pl-5 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+                {{ i }}
+              </span>
+            </div>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-1">
+      <button class="btn btn-primary" type="submit">Search</button>
+    </div>  
+  </div>
+</form>

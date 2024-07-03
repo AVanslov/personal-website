@@ -1,7 +1,10 @@
 from django.contrib import admin
 
-from .models import Technologies, Project
+from .models import (
+    Project,
+    Technology,
+)
 
-admin.site.register(Technologies)
+admin.site.register(Technology)
 
 admin.site.register(Project)
