@@ -12,7 +12,7 @@ class PortfolioListView(ListView):
     context_object_name = 'page_obj'
 
     def get_queryset(self):
-        queryset = {'projects': Project.objects.all(),
+        queryset = {'projects': Project.objects.order_by('-pub_date').all(),
                     'technologies': Technology.objects.all()}
         return queryset
 
