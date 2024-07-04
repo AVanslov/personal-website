@@ -1,6 +1,6 @@
 {% load static %}
 <div class="col">
-  <a class="link-underline-light link-underline-opacity-50" href="{% url 'blog:post_detail' post.id %}">
+  <a class="link-underline-light link-underline-opacity-50" href="{% url 'portfolio:project_detail' post.id %}">
     <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/{{ post.main_foto }}');">
       <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
         <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{ post.name }}</h3>
@@ -11,7 +11,12 @@
             </svg>
           </li>
           <li class="d-flex align-items-center me-3">
-            <small>{{ post.category }}</small>
+            <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+            {% for tag in post.technologies_id.all %} 
+              <small>
+                <img src="{{ tag.badge.url }}" width="30" height="30">
+              </small>
+            {% endfor %}
           </li>
           <li class="d-flex align-items-center">
             <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>

@@ -9,10 +9,10 @@
 <div>
   <h4 class="fst-italic">Recent posts</h4>
   <ul class="list-unstyled">
-    {% for post in page_obj|slice:":3" %}
+    {% for post in page_obj.posts|slice:":3" %}
       <li>
-        <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-          <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="{% url 'blog:post_detail' post.id %}">
+          <img class="bd-placeholder-img" src="{{ post.main_foto.url }}" alt="" style="object-fit: cover;" height="150" width="100">
           <div class="col-lg-8">
             <h6 class="mb-0">{{ post.name }}</h6>
             <small class="text-body-secondary">{{ post.pub_date }}</small>

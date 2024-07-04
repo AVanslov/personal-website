@@ -1,94 +1,89 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}
-  Portfolio
+  Blog
 {% endblock %}
 {% block content %}
-{% include "includes/toggle-theme.html" %}
+  {% include "includes/toggle-theme.html" %}
+  {% with request.resolver_match.view_name as view_name %}
+    <div class="container">
 
-<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-<symbol id="aperture" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
-  <circle cx="12" cy="12" r="10"/>
-  <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/>
-</symbol>
-<symbol id="cart" viewBox="0 0 16 16">
-  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-</symbol>
-<symbol id="chevron-right" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-</symbol>
-</svg>
-
-<div class="container">
-
-  <div class="nav-scroller py-1 mb-3 border-bottom">
-    <nav class="nav nav-underline justify-content-between">
-      {% for category in page_obj.categories %}
-        <a class="nav-item nav-link link-body-emphasis active" href="#">{{ category.name }}</a>
-      {% endfor %}
-    </nav>
-  </div>
-</div>
-
-<main class="container">
-  <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
-    <div class="col-lg-6 px-0">
-      {% with page_obj.posts|first as first_post %}
-        <h1 class="display-4 fst-italic">{{ first_post.name }}</h1>
-        <p class="lead my-3">{{ first_post.text|truncatechars:250|safe }}</p>
-        <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Continue reading...</a></p>
-      {% endwith %}
+      <div class="nav-scroller py-1 mb-3 border-bottom">
+        <nav class="nav nav-underline justify-content-between">
+          {% for category in page_obj.categories %}
+            <a class="nav-item nav-link link-body-emphasis {% if category.slug in request.path %} active {% endif %}" href="{% url 'blog:category_posts' category.slug %}">{{ category.name }}</a>
+          {% endfor %}
+        </nav>
+      </div>
     </div>
-  </div>
-{% if posts.count > 1 %}
-  <div class="row mb-2">
-    {% for post in page_obj.posts|slice:":2" %}
-      <div class="col-md-6">
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-primary-emphasis">{{ post.category }}</strong>
-            <h3 class="mb-0">{{ post.name }}</h3>
-            <div class="mb-1 text-body-secondary">{{ post.pub_date }}</div>
-            <p class="card-text mb-auto">{{ post.text|truncatechars:250|safe }}</p>
-            <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
-              Continue reading
-              <svg class="bi"><use xlink:href="#chevron-right"/></svg>
-            </a>
+    
+    <div class="container">
+      <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+        <div class="col-lg-6 px-0">
+          {% with page_obj.posts|first as first_post %}
+            {% if view_name == 'blog:category_posts' and page_obj.posts|length == 0 %}
+              <h1 class="display-4 fst-italic">
+                В данной категории пока нет статей
+              </h1>
+            {% else %}
+              <h1 class="display-4 fst-italic">
+                {{ first_post.name }}
+              </h1>
+              <p class="lead my-3">{{ first_post.text|truncatechars:100|safe }}</p>
+              <p class="lead mb-0"><a href="{% url 'blog:post_detail' first_post.id %}" class="text-body-emphasis fw-bold">Continue reading...</a></p>
+            {% endif %}
+          {% endwith %}
+        </div>
+      </div>
+      {% if page_obj.posts|length > 1 %}
+        <div class="row mb-2">
+          {% for post in page_obj.posts|slice:"0:5" %}
+          <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-primary-emphasis">{{ post.category }}</strong>
+                <h3 class="mb-0">{{ post.name }}</h3>
+                <div class="mb-1 text-body-secondary">{{ post.pub_date }}</div>
+                <a href="{% url 'blog:post_detail' post.id %}" class="icon-link gap-1 icon-link-hover stretched-link">
+                  Continue reading
+                  <svg class="bi"><use xlink:href="#chevron-right"/></svg>
+                </a>
+              </div>
+              <div class="col-auto d-none d-lg-block">
+                <img class="bd-placeholder-img" src="{{ post.main_foto.url }}" alt="" style="object-fit: cover;" height="200" width="200">
+              </div>
+            </div>
           </div>
-          <div class="col-auto d-none d-lg-block">
-            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+          {% endfor %}
+        </div>
+      {% endif %}
+      
+      <div class="row g-5">
+        <div class="col-md-8">
+          {% if page_obj.posts|length > 0 %}
+            <h3 class="pb-4 mb-4 fst-italic border-bottom">
+              Fresh
+            </h3>
+            {% for post in page_obj.posts|slice:"0:5" %}
+              <article class="blog-post">
+                <h2 class="display-5 link-body-emphasis mb-1">{{ post.name }}</h2>
+                <p class="blog-post-meta">{{post.pub_date}} by <a href="#">Aleksandr Buchelnikov</a></p>
+                <p>{{ post.text|safe }}</p>
+              </article>
+            {% endfor %}
+            <nav class="blog-pagination" aria-label="Pagination">
+              <a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
+              <a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</a>
+            </nav>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-4">
+          <div class="position-sticky" style="top: 2rem;">
+            {% include "includes/blog_sidebar.html" %}
           </div>
         </div>
       </div>
-    {% endfor %}
-  </div>
-{% endif %}
-
-  <div class="row g-5">
-    <div class="col-md-8">
-      <h3 class="pb-4 mb-4 fst-italic border-bottom">
-        Fresh
-      </h3>
-      {% for post in page_obj.posts|slice:":2" %}
-        <article class="blog-post">
-          <h2 class="display-5 link-body-emphasis mb-1">{{ post.name }}</h2>
-          <p class="blog-post-meta">{{post.pub_date}} by <a href="#">Aleksandr Buchelnikov</a></p>
-          <p>{{ post.text|safe }}</p>
-        </article>
-      {% endfor %}
-
-      <nav class="blog-pagination" aria-label="Pagination">
-        <a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
-        <a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</a>
-      </nav>
-
     </div>
-
-    <div class="col-md-4">
-      <div class="position-sticky" style="top: 2rem;">
-        {% include "includes/blog_sidebar.html" %}
-      </div>
-    </div>
-  </div>
-</main>
+  {% endwith %}
 {% endblock %}

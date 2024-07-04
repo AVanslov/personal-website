@@ -49,7 +49,7 @@
     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-1">
       {% if projects %}
         {% for post in projects %}
-          {% include "includes/post_card.html" %}
+          {% include "includes/project_card.html" %}
         {% endfor %}
       {% else %}
         <p>There are no projects yet</p>
@@ -57,7 +57,6 @@
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4 mb-lg-3 pt-5">
       <a href="{% url 'portfolio:all_projects' %}" class="nav-link px-2">
-
         <button type="button" class="btn btn-outline-secondary btn-lg px-4">See more projects</button>
       </a>
     </div>
@@ -75,7 +74,9 @@
       {% endif %}
     </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-4 mb-lg-3 pt-5">
-      <button type="button" class="btn btn-outline-secondary btn-lg px-4">See more articles</button>
+      <a href="{% url 'blog:all_posts' %}" class="nav-link px-2">
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">See more articles</button>
+      </a>
     </div>
   </div>
 {% endblock %}

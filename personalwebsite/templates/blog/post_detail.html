@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  {{ post.name }}
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="container my-5">
+    <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+          <h1 class="display-4 fw-bold lh-1 text-body-emphasis">{{ post.name }}</h1>
+          <p class="lead">{{ post.category }}</p>
+          <p class="blog-post-meta">{{post.pub_date}} by <a>Aleksandr Buchelnikov</a></p>
+        </div>
+        <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+            <img class="rounded-lg-3 rounded-top-3" src="{{ post.main_foto.url }}" alt="" style="object-fit: cover;" height="250" width="500">
+        </div>
+    </div>
+  </div>
+
+  <div class="row g-5">
+    <div class="col-md-8">
+
+      <article class="blog-post">
+        <p>{{ post.text|safe }}</p>
+      </article>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
