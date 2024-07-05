@@ -76,7 +76,7 @@ class CategoryPostListView(ListView):
             'posts': self.converter_to_markdown_content(
                 posts=self.get_category().posts.all()
             ),
-            'categories': Category.objects.all()
+            'categories': Category.objects.order_by('name').all()
         }
         return queryset
 
