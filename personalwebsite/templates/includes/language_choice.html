@@ -1,0 +1,17 @@
+{% load i18n %}
+{% get_current_language as current_language %}
+{% get_available_languages as languages %}
+{% with request.resolver_match.view_name as view_name %}
+  <div class="dropdown d-inline-flex">
+    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      {{ current_language }}
+    </button>
+    <ul class="dropdown-menu">
+      {% for lang_code, lang_name in languages %}
+        {% language lang_code %}
+          <li><a class="dropdown-item" href="{% url view_name %}">{{ lang_code }}</a></li>
+        {% endlanguage %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endwith %}

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     {% load static %}
+    {% load i18n %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{% static 'img/fav/favicon.ico' %}" type="image">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/fav/apple-touch-icon.png' %}">
@@ -17,11 +18,23 @@
     <link href="{% static 'bootstrap/assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
     <script src="{% static 'bootstrap/assets/js/color-modes.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+
+    <link href="{% static 'bootstrap/preloader.css' %}" rel="stylesheet">
+    <script>
+      window.onload = function () {
+        document.body.classList.add('loaded_hiding');
+        window.setTimeout(function () {
+          document.body.classList.add('loaded');
+          document.body.classList.remove('loaded_hiding');
+        }, 500);
+      }
+    </script>
     <title>
       {% block title %}{% endblock %}
     </title>
   </head>
   <body>
+    {% include 'includes/preloader.html' %}
     {% include "includes/header.html" %}
     <main>
       {% block content %}Контента пока нет :({% endblock %}
