@@ -2,3 +2,4 @@
 /venv.bak
 .env
 db.sqlite3
+./personalwebsite/static/static/

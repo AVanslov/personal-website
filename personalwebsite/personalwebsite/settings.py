@@ -37,6 +37,7 @@ ALLOWED_HOSTS = os.getenv(
     default='127.0.0.1,localhost'
 ).split(',')
 
+CSRF_TRUSTED_ORIGINS = ["https://buchelnikov.ddns.net"]
 
 # Application definition
 
