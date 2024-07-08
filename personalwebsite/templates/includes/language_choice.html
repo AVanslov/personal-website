@@ -9,7 +9,7 @@
     <ul class="dropdown-menu">
       {% for lang_code, lang_name in languages %}
         {% language lang_code %}
-          <li><a class="dropdown-item" href="{% url view_name %}">{{ lang_code }}</a></li>
+          <li><a class="dropdown-item" href="{% url 'mainpage:main' %}">{{ lang_code }}</a></li>
         {% endlanguage %}
       {% endfor %}
     </ul>

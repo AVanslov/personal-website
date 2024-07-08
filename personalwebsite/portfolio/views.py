@@ -1,6 +1,5 @@
-from typing import Any
 from django.shortcuts import get_object_or_404
-from django.views.generic import ListView, DetailView
+from django.views.generic import DetailView, ListView
 
 from .models import Project, Technology
 
@@ -12,8 +11,8 @@ class PortfolioListView(ListView):
     context_object_name = 'page_obj'
 
     def get_queryset(self):
-        queryset = {'projects': Project.objects.order_by('-pub_date').all(),
-                    'technologies': Technology.objects.all()}
+        queryset = {'projects': Project.objects.order_by('-pub_date'),
+                    'technologies': Technology.objects.order_by('name')}
         return queryset
 
 
@@ -24,6 +23,7 @@ class PortfolioDetailView(DetailView):
 
 class CategoryProjectListView(ListView):
     model = Project
+    ordering = '-pub_date'
     template_name = 'portfolio/project_list.html'
     context_object_name = 'page_obj'
 
@@ -34,8 +34,9 @@ class CategoryProjectListView(ListView):
         )
 
     def get_queryset(self):
-        queryset = {'projects': self.get_technology().projects.all(),
-                    'technologies': Technology.objects.all()}
+        queryset = {
+            'projects': self.get_technology().projects.all(),
+            'technologies': Technology.objects.order_by('name')}
         return queryset
 
     def get_context_data(self, **kwargs):

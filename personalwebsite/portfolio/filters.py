@@ -1,5 +1,5 @@
-from django import forms
 import django_filters
+from django import forms
 
 from .models import Project, Technology
 

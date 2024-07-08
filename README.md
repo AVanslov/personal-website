@@ -1,4 +1,4 @@
-![example event parameter](https://github.com/avanslov/foodgram-project-react/actions/workflows/main.yml/badge.svg?event=push)
+![example event parameter](https://github.com/avanslov/personal-website/actions/workflows/main.yml/badge.svg?event=push)
 
 # Личный веб сайт
 

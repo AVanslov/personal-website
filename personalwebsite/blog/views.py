@@ -1,12 +1,8 @@
-from django.shortcuts import get_object_or_404
 import markdown
+from django.shortcuts import get_object_or_404
+from django.views.generic import DetailView, ListView
 
-from django.views.generic import ListView, DetailView
-
-from .models import (
-    Category,
-    Post,
-)
+from .models import Category, Post
 
 
 class PostListView(ListView):
@@ -23,10 +19,12 @@ class PostListView(ListView):
         return all_posts
 
     def get_queryset(self):
-        queryset = {'posts': self.converter_to_markdown_content(
-            posts=Post.objects.order_by('pub_date').all()
-        ),  # добавить пагинацию
-                    'categories': Category.objects.order_by('name').all()}
+        queryset = {
+            'posts': self.converter_to_markdown_content(
+                posts=Post.objects.order_by('pub_date').all()
+            ),  # добавить пагинацию
+            'categories': Category.objects.order_by('name').all()
+        }
         return queryset
 
 

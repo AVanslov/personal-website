@@ -1,17 +1,7 @@
-# from django import forms
 from django.contrib import admin
-# from ckreditor_uploader.widgets import CKEditorUploadingWidget
 from modeltranslation.admin import TranslationAdmin
 
-from .models import (
-    Project,
-    Technology,
-)
-
-
-# class TechnologyAdminForm(forms.ModelForm):
-#     name_ru = forms.CharField(label='Название', widget=CKEditorUploadingWidget())
-
+from .models import Project, Technology
 
 
 @admin.register(Technology)
@@ -21,7 +11,6 @@ class TechnologyAdmin(TranslationAdmin):
         'badge',
         'slug',
     )
-    # form = TechnologyAdminForm
 
 
 @admin.register(Project)

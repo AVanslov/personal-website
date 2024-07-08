@@ -1,0 +1,31 @@
+volumes:
+  pg_data:
+  static:
+  media_volume:
+
+services:
+  db:
+    image: postgres:13.10
+    env_file: .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  backend:
+    image: avanslov/personalwebsite
+    env_file: .env
+    volumes:
+      - ./personalwebsite/static:/backend_static
+      - ./personalwebsite/media:/app/personalwebsite/media/
+    depends_on:
+      - db
+
+  gateway:
+    image: avanslov/personalwebsitegateway
+    env_file: .env
+    volumes:
+      - ./personalwebsite/static:/staticfiles/
+      - ./personalwebsite/media:/app/personalwebsite/media/
+    ports:
+      - 8000:80
+    depends_on:
+      - backend
