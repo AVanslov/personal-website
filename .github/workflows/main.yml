@@ -61,7 +61,7 @@ jobs:
         with:
           context: ./
           push: true
-          tags: avanslov/personal-website:latest
+          tags: avanslov/personalwebsite:latest
   
   build_gateway_and_push_to_docker_hub:
     name: Push gateway Docker image to DockerHub
@@ -83,7 +83,7 @@ jobs:
         with:
           context: ./nginx/
           push: true
-          tags: avanslov/personalwebsite:latest
+          tags: avanslov/personalwebsitegateway:latest
 
   deploy:
     runs-on: ubuntu-latest
