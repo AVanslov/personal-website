@@ -1,5 +1,5 @@
 {% load static %}
-<div class="col">
+<div class="col text-center mx-auto" style="max-width: 150px;">
   <a class="link-underline-light link-underline-opacity-50" href="{% url 'portfolio:category_projects' tag.slug %}">
     <span class="badge d-flex align-items-center p-1 pe-2 text-info-emphasis bg-info-subtle border border-info-subtle rounded-pill">
       <img src="{{ tag.badge.url }}" alt="Описание" width="25" height="25" class="ms-1 me-1">{{ tag.name }}

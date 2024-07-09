@@ -8,35 +8,34 @@
   <div class="container">
     <div class="row">
       <div class="col rounded-3 my-3 mx-3 p-3">
-        <div class="p-3 text-start">
-          <h1 style="font-size: 80px;">ALEKSANDR BUCHELNIKOV</h1>
-          <h2 style="font-size: 40px;">PYTHON DEVELOPER</h2>
+        <div class="px-auto text-start">
+          <h1 class="display-1"><strong>ALEKSANDR BUCHELNIKOV</strong></h1>
+          <h2 class="display-6">PYTHON DEVELOPER</h2>
           <!-- <button type="button" class="btn btn-outline-primary me-2">Download CV</button> -->
           {% include 'includes/download_cv_dropdown.html' %}
           {% include 'includes/hire_me_dropdown.html' %}
           <!-- <button type="button" class="btn btn-outline-primary me-2 disabled">Order website</button> -->
           <!-- <button type="button" class="btn btn-primary">Hire me</button> -->
         </div>
-        <div class="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-1">
-          {% if technologies %}
-            {% for tag in technologies %}
-              {% include "includes/tag.html" %}
-            {% endfor %}
-          {% else %}
-            <p>There are no technologies yet</p>
-          {% endif %}
-        </div>
       </div>
-      <div class="col rounded-3 my-3 mx-3 p-3">
-        <div class="p-3 text-end">
-          <!-- <img src="{% static 'img/Self-portrait.png' %}" alt="Описание" height="500"> -->
-          <img src="https://avatars.githubusercontent.com/u/145268320?v=4" alt="Описание" width="400" height="400">
+      <div class="col rounded-3 my-3 mx-3 px-auto">
+        <div class="px-auto text-end">
+          <img src="https://avatars.githubusercontent.com/u/145268320?v=4" class="img-fluid rounded-3" alt="Описание" min-width="400" height="400">
         </div>
       </div>
     </div>
+    <div class="row row-cols-1 row-cols-lg-6 align-items-stretch text-center g-4 py-3 px-auto">
+      {% if technologies %}
+        {% for tag in technologies %}
+          {% include "includes/tag.html" %}
+        {% endfor %}
+      {% else %}
+        <p>There are no technologies yet</p>
+      {% endif %}
+    </div>
 
-    <div class="row p-4 pb-0 pe-lg-0 align-items-center rounded-3 border shadow-lg">
-      <div class="col-lg-12 p-3 p-lg-5 pt-lg-3">
+    <div class="row p-4 m-1 pb-0 pe-lg-0 align-items-center rounded-3 border shadow-lg">
+      <div class="col-lg-12 p-5 p-lg-5 pt-lg-3">
         {% include "includes/about_me.html" %}
       </div>
       <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
@@ -52,7 +51,7 @@
     </div>
     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-1">
       {% if projects %}
-        {% for post in projects %}
+        {% for post in projects|slice:":3" %}
           {% include "includes/project_card.html" %}
         {% endfor %}
       {% else %}
@@ -70,7 +69,7 @@
     </div>
     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-1">
       {% if posts %}
-        {% for post in posts %}
+        {% for post in posts|slice:":3" %}
           {% include "includes/post_card.html" %}
         {% endfor %}
       {% else %}
