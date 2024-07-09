@@ -1,3 +1,4 @@
+import markdown
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
 
@@ -19,6 +20,23 @@ class PortfolioListView(ListView):
 class PortfolioDetailView(DetailView):
     model = Project
     template_name = 'portfolio/project_detail.html'
+
+    def get_project(self):
+        return get_object_or_404(
+            Project,
+            id=self.kwargs['pk']
+        )
+
+    def converter_to_markdown_content(self):
+        post = self.get_project()
+        md = markdown.Markdown(extensions=["fenced_code"])
+        post.body_text = md.convert(post.body_text)
+        return post
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['project'] = self.converter_to_markdown_content()
+        return context
 
 
 class CategoryProjectListView(ListView):

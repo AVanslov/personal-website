@@ -4,7 +4,6 @@
   {{ post.name }}
 {% endblock %}
 {% block content %}
-  {% include "includes/toggle-theme.html" %}
   <div class="container">
     
     <div class="container my-5">
@@ -45,11 +44,12 @@
       </div>
     </div>
 
-    <!-- <div class="row p-4 pb-0 pe-lg-0 align-items-center rounded-3 border shadow-lg">
+    <div class="row p-4 pb-0 pe-lg-0 align-items-center rounded-3 border shadow-lg">
       <div class="col-lg-12 p-3 p-lg-5 pt-lg-3">
-        <h2 class="display-4 fw-bold lh-1 text-body-emphasis">More about project</h2>
-        <p>{{ project.body_text }}</p>
+        <h2 class="display-6 fw-bold lh-1 text-body-emphasis">More about project</h2>
+        <p>{{ project.description }}</p>
+        <p>{{ project.body_text|safe }}</p>
       </div>
-    </div> -->
+    </div>
   </div>
 {% endblock %}

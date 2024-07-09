@@ -1,20 +1,29 @@
-<a href="https://t.me/aleksandr_buchelnikov">
-  <span class="badge d-flex align-items-center p-1 pe-2 bg-light-subtle border-light-subtle rounded-pill">
-    <img class="me-1" height="30" src="https://img.shields.io/badge/Telegram-cff4fc?style=for-the-badge&logo=telegram" alt="">
-  </span>
-</a>
-<a href="https://www.linkedin.com/in/aleksandr-buchelnikov/">
-  <span class="badge d-flex align-items-center p-1 pe-2 bg-light-subtle border-light-subtle rounded-pill">
-    <img class="me-1" height="30" src="https://img.shields.io/badge/LinkeIn-cff4fc?style=for-the-badge&logo=linkedin&logoColor=0d6efd" alt="">
-  </span>
-</a>
-<a href="mailto:al.buchelnikov@gmail.com">
-  <span class="badge d-flex align-items-center p-1 pe-2 bg-light-subtle border-light-subtle rounded-pill">
-    <img class="me-1" height="30" src="https://img.shields.io/badge/Gmail-cff4fc?style=for-the-badge&logo=gmail" alt="">
-  </span>
-</a>
-<a href="https://github.com/AVanslov">
-  <span class="badge d-flex align-items-center p-1 pe-2 bg-light-subtle border-light-subtle rounded-pill">
-    <img class="me-1" height="30" src="https://img.shields.io/badge/GitHub-cff4fc?style=for-the-badge&logo=github&logoColor=black" alt="">
-  </span>
-</a>
+{% load static %}
+<div class="col py-1">
+  <a class="link-underline-light link-underline-opacity-50" href="https://t.me/aleksandr_buchelnikov">
+    <span class="badge d-flex align-items-center p-1 pe-2 text-info-emphasis bg-info-subtle border border-info-subtle rounded-pill">
+      <img src="{% static 'img/badges/icons8-telegram-48.png' %}" alt="Описание" width="25" height="25" class="ms-1 me-1">Telegram
+    </span>
+  </a>
+</div>
+<div class="col py-1">
+  <a class="link-underline-light link-underline-opacity-50" href="https://www.linkedin.com/in/aleksandr-buchelnikov/">
+    <span class="badge d-flex align-items-center p-1 pe-2 text-info-emphasis bg-info-subtle border border-info-subtle rounded-pill">
+      <img src="{% static 'img/badges/icons8-linkedin-48.png' %}" alt="Описание" width="25" height="25" class="ms-1 me-1">LinkedIn
+    </span>
+  </a>
+</div>
+<div class="col py-1">
+  <a class="link-underline-light link-underline-opacity-50" href="mailto:al.buchelnikov@gmail.com">
+    <span class="badge d-flex align-items-center p-1 pe-2 text-info-emphasis bg-info-subtle border border-info-subtle rounded-pill">
+      <img src="{% static 'img/badges/icons8-gmail-48.png' %}" alt="Описание" width="25" height="25" class="ms-1 me-1">E-Mail
+    </span>
+  </a>
+</div>
+<div class="col py-1">
+  <a class="link-underline-light link-underline-opacity-50" href="https://github.com/AVanslov">
+    <span class="badge d-flex align-items-center p-1 pe-2 text-info-emphasis bg-info-subtle border border-info-subtle rounded-pill">
+      <img src="{% static 'img/badges/icons8-github-24.png' %}" alt="Описание" width="25" height="25" class="ms-1 me-1">GitHub
+    </span>
+  </a>
+</div>
