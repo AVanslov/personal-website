@@ -11,7 +11,7 @@ class PostListView(ListView):
     context_object_name = 'page_obj'
 
     def converter_to_markdown_content(self, posts):
-        md = markdown.Markdown(extensions=["fenced_code"])
+        md = markdown.Markdown(extensions=["fenced_code", "tables"])
         all_posts = []
         for post in posts:
             post.text = md.convert(post.text)
@@ -40,7 +40,7 @@ class PostDetailView(DetailView):
 
     def converter_to_markdown_content(self):
         post = self.get_post()
-        md = markdown.Markdown(extensions=["fenced_code"])
+        md = markdown.Markdown(extensions=["fenced_code", "tables"])
         post.text = md.convert(post.text)
         return post
 
@@ -56,7 +56,7 @@ class CategoryPostListView(ListView):
     context_object_name = 'page_obj'
 
     def converter_to_markdown_content(self, posts):
-        md = markdown.Markdown(extensions=["fenced_code"])
+        md = markdown.Markdown(extensions=["fenced_code", "tables"])
         all_posts = []
         for post in posts:
             post.text = md.convert(post.text)

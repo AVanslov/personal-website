@@ -29,7 +29,7 @@ class PortfolioDetailView(DetailView):
 
     def converter_to_markdown_content(self):
         post = self.get_project()
-        md = markdown.Markdown(extensions=["fenced_code"])
+        md = markdown.Markdown(extensions=["fenced_code", "tables"])
         post.body_text = md.convert(post.body_text)
         return post
 
