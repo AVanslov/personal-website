@@ -33,7 +33,7 @@ class Technology(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=NAME_LENGTH)
     short_description = models.CharField(max_length=SHORT_DESCRIPTION_LENGTH)
-    description = models.CharField(max_length=DESCRIPTION_LENGTH)
+    # description = models.CharField(max_length=DESCRIPTION_LENGTH)
     main_foto = models.ImageField(
         'Project main photo',
         upload_to='project_main_photo/',
@@ -44,11 +44,12 @@ class Project(models.Model):
     )
     code_url = models.URLField()
     production_url = models.URLField()
-    pub_date = models.DateField(auto_now=False, auto_now_add=False)
+    pub_date = models.DateField(auto_now=False, auto_now_add=True)
     technologies_id = models.ManyToManyField(
         Technology,
         related_name='projects'
     )
+    published = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

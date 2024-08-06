@@ -1,5 +1,6 @@
 /venv
 /venv.bak
+venv
 .env
 db.sqlite3
 ./personalwebsite/static/static/

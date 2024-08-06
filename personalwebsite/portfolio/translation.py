@@ -13,6 +13,6 @@ class PostTranslationOprions(TranslationOptions):
     fields = (
         'name',
         'short_description',
-        'description',
+        # 'description',
         'body_text',
     )

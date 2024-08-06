@@ -18,6 +18,6 @@ class ProjectAdmin(TranslationAdmin):
     list_display = (
         'name',
         'short_description',
-        'description',
+        # 'description',
         'body_text',
     )
